@@ -1,7 +1,7 @@
 local GAMES = {}
 
 local GAMES_BY_UNIVERSE = {
-    [99925503388128] = {
+    [10039889230] = {
         "FishingMaster",
         "https://vxezestudio.online/api/scripts/script_gLSmSrzXRaJoJ/stream/init"
     }
