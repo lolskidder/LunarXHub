@@ -7,12 +7,31 @@ local GAMES_BY_UNIVERSE = {
     }
 }
 
-local entry = GAMES[game.PlaceId] or GAMES_BY_UNIVERSE[game.GameId]
-local game_name = entry and entry[1]
-local loader_url = entry and entry[2]
+print("PlaceId:", game.PlaceId)
+print("GameId:", game.GameId)
 
-if loader_url then
-    loadstring(game:HttpGet(loader_url))()
+local entry = GAMES[game.PlaceId]
+    or GAMES_BY_UNIVERSE[game.GameId]
+
+if entry then
+    local game_name = entry[1]
+    local loader_url = entry[2]
+
+    print("Game được hỗ trợ:", game_name)
+
+    local success, err = pcall(function()
+        local source = game:HttpGet(loader_url)
+        assert(#source > 0, "Loader trả về nội dung rỗng")
+        local fn = loadstring(source)
+        assert(fn, "Không biên dịch được loader")
+        fn()
+    end)
+
+    if not success then
+        warn("Lỗi chạy loader:", err)
+    end
 else
-    warn("Game không được hỗ trợ: " .. tostring(game.GameId))
+    warn("Game không được hỗ trợ!")
+    warn("GameId hiện tại:", game.GameId)
+    warn("PlaceId hiện tại:", game.PlaceId)
 end
