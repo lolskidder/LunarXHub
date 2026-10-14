@@ -3,7 +3,7 @@ local GAMES = {}
 local GAMES_BY_UNIVERSE = {
     [10039889230] = {
         "FishingMaster",
-        "https://vxezestudio.online/api/scripts/script_gLSmSrzXRaJoJ/stream/init"
+        "https://vxezestudio.online/api/scripts/script_I26KZ1w6qnq6M/stream/init"
     }
 }
 
